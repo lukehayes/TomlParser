@@ -93,7 +93,12 @@ $RECYCLE.BIN/
 *.lnk
 
 bin/
+build/
 app
+
+*.json
+.cache/
+
 
 
 # End of https://www.toptal.com/developers/gitignore/api/cmake,linux,windows,macos
