@@ -7,6 +7,7 @@ set(CMAKE_C_STANDARD 17)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(INCLUDE_DIRS "include")
 set(BIN_NAME "TomlParser")
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # Find all source files.
 # 
