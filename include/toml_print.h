@@ -2,6 +2,7 @@
 #define TOML_PRINT_H
 
 #include <stdio.h>
+#include "toml_parser.h"
 
 /**-----------------------------------------------------------------------------
  = HELPFUL TOML PRINT FUNCTIONS
@@ -14,7 +15,10 @@ void PrintString(const char* str)
 
 void PrintBuffer(BufferData* buffer)
 {
-    printf("Data: %s. \nSIZE: %i\n", buffer->data, buffer->size);
+    printf("\n----------------------------------------------\n");
+    printf("Buffer Data: \n");
+    printf("\nData: %s \nSIZE: %li\n", buffer->data, buffer->size);
+    printf("----------------------------------------------\n");
 }
 
 #endif // TOML_PRINT_H
