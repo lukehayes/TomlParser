@@ -30,7 +30,7 @@ BufferData* ReadFile(const char* toml_file)
     return buffer;
 }
 
-void ParseToml(BufferData* buffer)
+TomlTable* ParseToml(BufferData* buffer)
 {
     char* buf = buffer->data;
 

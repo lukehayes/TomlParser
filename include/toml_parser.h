@@ -46,6 +46,23 @@ typedef struct Token {
 } Token;
 
 
+/**
+ * An individual toml table field.
+ */
+typedef struct TomlEntry
+{
+    const char* key;
+    void* value;
+
+} TomlEntry;
+
+typedef struct TomlTable
+{
+    char* name;
+    struct TomlEntry* entry;
+
+} TomlTable;
+
 /**-----------------------------------------------------------------------------
  = FUNCTIONS
 -----------------------------------------------------------------------------**/
@@ -74,9 +91,9 @@ BufferData* ReadFile(const char* toml_file);
  *
  * @param BufferData*
  *
- * @return void
+ * @return TomlTable*
  */
-void ParseToml(BufferData* buffer);
+TomlTable* ParseToml(BufferData* buffer);
 
 
 /**
