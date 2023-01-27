@@ -47,14 +47,7 @@ typedef struct Token {
  *
  * @return int
  */
-int GetFileSize(FILE* fp)
-{
-    fseek(fp, 0, SEEK_END);
-    int file_length = ftell(fp);
-    fseek(fp, 0, SEEK_SET);
-
-    return file_length;
-}
+int GetFileSize(FILE* fp);
 
 /**
  * Read the contents of a file and store it in memory.
@@ -64,21 +57,6 @@ int GetFileSize(FILE* fp)
  * @return char*    Contents of the file. Must be freed.
  *
  */
-char* ReadFile(const char* toml_file)
-{
-    FILE* fp = fopen(toml_file, "r+");
-
-    int file_length = GetFileSize(fp);
-
-    if(ferror(fp))
-        printf("An error occurred opening file %s \n", toml_file);
-
-    char* buffer = malloc(sizeof(char) * file_length);
-
-    fread(buffer, 1, file_length,fp);
-    fclose(fp);
-
-    return buffer;
-}
+char* ReadFile(const char* toml_file);
 
 #endif // TOML_PARSER_H
