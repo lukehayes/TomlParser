@@ -24,6 +24,16 @@ typedef enum TokenType {
 
 } TokenType;
 
+/**
+ * Handy location to store data that has been read in.
+ */
+typedef struct BufferData
+{
+    char* data;
+    size_t size;
+
+} BufferData;
+
 
 /**
  * An individual token parsed from a .toml file.
@@ -54,9 +64,31 @@ int GetFileSize(FILE* fp);
  *
  * @param const char* toml_file    The name of the .toml file
  *
- * @return char*    Contents of the file. Must be freed.
+ * @return BufferData*
  *
  */
-char* ReadFile(const char* toml_file);
+BufferData* ReadFile(const char* toml_file);
+
+/**
+ * Parse toml and retrieve meaningful data.
+ *
+ * @param char* buffer    Contents of .toml file.
+ *
+ * @return void
+ */
+void ParseToml(char* buffer, int size);
+
+
+/**
+ * Destroy all of the memory allocated for this buffer
+ *
+ * @param char* buffer    Contents of .toml file.
+ *
+ * @return void
+ */
+void DestroyBufferData(BufferData* buffer);
+
+
+
 
 #endif // TOML_PARSER_H

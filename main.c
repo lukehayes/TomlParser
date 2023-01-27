@@ -3,36 +3,15 @@
 #include <string.h>
 #include <ctype.h>
 
+#include "toml_parser.h"
+#include "toml_print.h"
+
 int main()
 {
-    int SIZE = 100;
-    const char* toml_file = "data.toml";
-    char buf[SIZE];
+    BufferData* buffer = ReadFile("data.toml");
 
-    FILE* fp = fopen(toml_file, "r");
-
-    fread(buf,4, SIZE, fp);
-
-    for(int i = 0; i<= SIZE; i++) {
-
-        if( isalpha(*(buf+i)) )
-        {
-            printf("%c", *(buf+i));
-        }else
-        {
-            switch(*(buf+i))
-            {
-                case '[':
-                    printf("\n[");
-                case ']':
-                    printf("]\n");
-                default:
-            }
-        }
-    }
-    printf("\n", *buf);
-
-    fclose(fp);
+    PrintBuffer(buffer);
+    DestroyBufferData(buffer);
 
     return 0;
 }
