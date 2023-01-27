@@ -30,30 +30,28 @@ BufferData* ReadFile(const char* toml_file)
     return buffer;
 }
 
-void ParseToml(char* buffer, int size)
+void ParseToml(BufferData* buffer)
 {
-    /*fread(buffer,4, size, fp);*/
+    char* buf = buffer->data;
 
-    /*for(int i = 0; i<= size; i++) {*/
+    for(int i = 0; i<= buffer->size; i++) {
 
-        /*if( isalpha(*(buf+i)) )*/
-        /*{*/
-            /*printf("%c", *(buf+i));*/
-        /*}else*/
-        /*{*/
-            /*switch(*(buf+i))*/
-            /*{*/
-                /*case '[':*/
-                    /*printf("\n[");*/
-                /*case ']':*/
-                    /*printf("]\n");*/
-                /*default:*/
-            /*}*/
-        /*}*/
-    /*}*/
-    /*printf("\n", *buf);*/
-
-    /*fclose(fp);*/
+        if( isalpha(*(buf+i)) )
+        {
+            printf("%c", *(buf+i));
+        }else
+        {
+            switch(*(buf+i))
+            {
+                case '[':
+                    printf("\n[");
+                case ']':
+                    printf("]\n");
+                default:
+            }
+        }
+    }
+    printf("\n", *buf);
 }
 
 void DestroyBufferData(BufferData* buffer)

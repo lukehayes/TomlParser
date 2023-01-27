@@ -72,11 +72,11 @@ BufferData* ReadFile(const char* toml_file);
 /**
  * Parse toml and retrieve meaningful data.
  *
- * @param char* buffer    Contents of .toml file.
+ * @param BufferData*
  *
  * @return void
  */
-void ParseToml(char* buffer, int size);
+void ParseToml(BufferData* buffer);
 
 
 /**
