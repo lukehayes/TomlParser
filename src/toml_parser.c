@@ -1,4 +1,5 @@
 #include "toml_parser.h"
+#include "toml_print.h"
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h> // For isalpha() - Note to self.
@@ -36,25 +37,26 @@ BufferData* ReadFile(const char* toml_file)
 TomlTable* ParseToml(BufferData* buffer)
 {
     char* buf = buffer->data;
+    TomlTable* table = malloc(sizeof(TomlTable));
 
     for(int i = 0; i<= buffer->size; i++) {
 
-        if( isalpha(*(buf+i)) )
+        char current_char = *(buf + i);
+        char* name = malloc(sizeof(char));
+
+
+        if(isalpha(current_char))
         {
-            printf("%c", *(buf+i));
-        }else
-        {
-            switch(*(buf+i))
-            {
-                case '[':
-                    printf("\n[");
-                case ']':
-                    printf("]\n");
-                default:
-            }
+            static int c = 1;
+            char nc = *(buf + i + c);
+
+            name = realloc(name, sizeof(char) * c);
+            PS(name);
+            c++;
         }
     }
-    printf("\n", *buf);
+
+    return table;
 }
 
 void DestroyBufferData(BufferData* buffer)
