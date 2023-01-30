@@ -84,9 +84,17 @@ int GetFileSize(FILE* fp);
  * @param const char* toml_file    The name of the .toml file
  *
  * @return BufferData*
- *
  */
 BufferData* ReadFile(const char* toml_file);
+
+/**
+ * Run a basic lexical analysis of file.
+ *
+ * @param BufferData* data    Data to be tokenized.
+ *
+ * @return TokenType*
+ */
+Token* TokenizeToml(BufferData* buffer);
 
 /**
  * Parse toml and retrieve meaningful data.

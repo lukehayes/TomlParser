@@ -34,6 +34,62 @@ BufferData* ReadFile(const char* toml_file)
     return buffer;
 }
 
+Token* TokenizeToml(BufferData* buffer)
+{
+    char* buf = buffer->data;
+    Token* t = malloc(sizeof(Token) * (buffer->size + 1));
+
+    for(int i = 0; i<= buffer->size; i++) {
+
+        char current_char = *(buf + i);
+        Token* tok = (t + i);
+
+        if(!isalnum(current_char))
+        {
+            switch (current_char)
+            {
+                case '[':
+                    tok->type = LEFTBRACE;
+                    tok->value = current_char;
+                    break;
+                case ']':
+                    tok->type = RIGHTBRACE;
+                    tok->value = current_char;
+                    break;
+                case '=':
+                    tok->type = EQUALS;
+                    tok->value = current_char;
+                    break;
+                case ',':
+                    tok->type = COMMA;
+                    tok->value = current_char;
+                    break;
+                case '.':
+                    tok->type = DOT;
+                    tok->value = current_char;
+                    break;
+                case '"':
+                    tok->type = DQUOTE;
+                    tok->value = current_char;
+                    break;
+                case '\n':
+                case '\t':
+                case '\r':
+                default:
+                    break;
+            }
+        }else
+        {
+            if(current_char != ' ')
+            {
+                tok->type  = STRCHAR;
+                tok->value = current_char;
+            }
+        }
+    }
+
+    return t;
+}
 TomlTable* ParseToml(BufferData* buffer)
 {
     char* buf = buffer->data;
