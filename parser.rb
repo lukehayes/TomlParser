@@ -1,22 +1,21 @@
-
-lines = []
+# frozen_string_literal: true
 
 def isalpha(str)
   return false if str.empty?
+
   !str.match(/[^A-Za-z]/)
 end
 
 def isnum(str)
   return false if str.empty?
+
   !str.match(/[^0-9]/)
 end
 
-
-lines = File.readlines("data.toml")
+lines = File.readlines('data.toml')
 
 lines.each do |line|
   line.each_char do |c|
-
     if isalpha(c)
       print c
 
@@ -26,22 +25,19 @@ lines.each do |line|
     else
       case c
       when '['
-        print "["
+        print '['
       when ']'
-        print "]"
+        print ']'
       when '='
-        print "="
+        print '='
       when '"'
         print '"'
       when '.'
         print '.'
       when ','
         print ','
-      else
       end
     end
-
   end
-    puts " "
+  puts ' '
 end
-
