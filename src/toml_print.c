@@ -11,6 +11,11 @@ void PC(char c)
     printf("CHAR: %c\n", c);
 }
 
+void PCNN(char c)
+{
+    printf("%c", c);
+}
+
 void PI(int i)
 {
     printf("INT: %i\n", i);

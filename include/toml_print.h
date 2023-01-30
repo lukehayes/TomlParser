@@ -11,6 +11,8 @@ void PS(const char* str);
 
 void PC(char c);
 
+void PCNN(char c);
+
 void PI(int i);
 
 void PF(float f);
