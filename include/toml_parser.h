@@ -16,7 +16,7 @@ typedef enum TokenType {
     LEFTBRACE,
     RIGHTBRACE,
     EQUALS,
-    STRING,
+    STRCHAR,
     SQUOTE,
     DQUOTE,
     DOT,
