@@ -20,7 +20,8 @@ typedef enum TokenType {
     SQUOTE,
     DQUOTE,
     DOT,
-    COMMA
+    COMMA,
+    SPACE
 
 } TokenType;
 
