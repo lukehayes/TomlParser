@@ -41,7 +41,8 @@ typedef struct BufferData
  */
 typedef struct Token {
 
-    char*  value;
+    char  value;
+    TokenType type;
     size_t length;
 
 } Token;
