@@ -41,11 +41,15 @@ Token* TokenizeToml(BufferData* buffer)
 
     for(int i = 0; i<= buffer->size; i++) {
 
+        static int counter = 0;
         char current_char = *(buf + i);
         Token* tok = (t + i);
 
         if(!isalnum(current_char))
         {
+            // Reset the counter if current char is not alphanumeric.
+            counter = 0;
+
             switch (current_char)
             {
                 case '[':
