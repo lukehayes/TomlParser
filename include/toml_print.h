@@ -19,7 +19,7 @@ void PF(float f);
 
 void PrintString(const char* str);
 
-void PrintTomlTable(TomlTable* table);
+// void PrintTomlTable(TomlTable* table);
 
 void PrintBuffer(BufferData* buffer);
 

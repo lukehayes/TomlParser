@@ -31,13 +31,13 @@ void PrintString(const char* str)
     printf("STR: %s\n", str);
 }
 
-void PrintTomlTable(TomlTable* table)
-{
-    printf("\n----------------------------------------------\n");
-    printf("Toml Table: \n");
-    printf("\nName: %s \n", table->name);
-    printf("----------------------------------------------\n");
-}
+// void PrintTomlTable(TomlTable* table)
+// {
+//     printf("\n----------------------------------------------\n");
+//     printf("Toml Table: \n");
+//     printf("\nName: %s \n", table->name);
+//     printf("----------------------------------------------\n");
+// }
 
 void PrintBuffer(BufferData* buffer)
 {

@@ -36,35 +36,6 @@ typedef struct BufferData
 } BufferData;
 
 
-/**
- * An individual token parsed from a .toml file.
- */
-typedef struct Token {
-
-    char  value;
-    TokenType type;
-    size_t length;
-
-} Token;
-
-
-/**
- * An individual toml table field.
- */
-typedef struct TomlEntry
-{
-    const char* key;
-    void* value;
-
-} TomlEntry;
-
-typedef struct TomlTable
-{
-    char* name;
-    struct TomlEntry* entry;
-
-} TomlTable;
-
 /**-----------------------------------------------------------------------------
  = FUNCTIONS
 -----------------------------------------------------------------------------**/
@@ -86,25 +57,6 @@ int GetFileSize(FILE* fp);
  * @return BufferData*
  */
 BufferData* ReadFile(const char* toml_file);
-
-/**
- * Run a basic lexical analysis of file.
- *
- * @param BufferData* data    Data to be tokenized.
- *
- * @return TokenType*
- */
-Token* TokenizeToml(BufferData* buffer);
-
-/**
- * Parse toml and retrieve meaningful data.
- *
- * @param BufferData*
- *
- * @return TomlTable*
- */
-TomlTable* ParseToml(BufferData* buffer);
-
 
 /**
  * Destroy all of the memory allocated for this buffer
