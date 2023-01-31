@@ -1,3 +1,11 @@
+[player]
+    name   = "Player"
+    health = 100
+
+[ghost]
+    name   = "Ghost"
+    health = 30
 [server]
     host = "www.exampleeee.com"
     port = [ 8080, 8181, 8282 ]
+
