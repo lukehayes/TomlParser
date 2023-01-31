@@ -35,6 +35,36 @@ typedef struct BufferData
 
 } BufferData;
 
+/**
+ * Token represents a complete/valid token on TOML.
+ */
+typedef struct Token
+{
+    char* value;
+    size_t size;
+    TokenType type;
+} Token;
+
+/**
+ * Toml Entry represents a single row of a table.
+ */
+typedef struct TomlRow
+{
+    const char* key;
+    void* value;
+
+} TomlRow;
+
+/**
+ * Toml table root structure.
+ */
+typedef struct TomlTable
+{
+    const char* root;
+    TomlRow* fields;
+
+} TomlTable;
+
 
 /**-----------------------------------------------------------------------------
  = FUNCTIONS
@@ -66,8 +96,6 @@ BufferData* ReadFile(const char* toml_file);
  * @return void
  */
 void DestroyBufferData(BufferData* buffer);
-
-
 
 
 #endif // TOML_PARSER_H
