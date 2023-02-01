@@ -2,6 +2,7 @@
 #include "toml_print.h"
 #include <stdlib.h>
 #include <string.h>
+#include <stdbool.h>
 #include <ctype.h> // For isalpha() - Note to self.
 
 int GetFileSize(FILE* fp)
@@ -16,13 +17,14 @@ int GetFileSize(FILE* fp)
 char* ParseTableTitle(BufferData* buffer)
 {
     const int MAX = 10;
+    bool loopReset = false;
     char* title_buffer = malloc(sizeof(char) * MAX);
 
     for (int i = 0; i <= MAX; i++)
     {
         char* current_char = (buffer->data + i);
 
-        static int counter = 0;
+        static int counter = -1;
 
         switch (*current_char)
         {
@@ -31,13 +33,21 @@ char* ParseTableTitle(BufferData* buffer)
                 break;
             case ']':
                 // ] Char represents end of title
-                counter = 0;
+                counter = -1;
+                loopReset = true;
                 break;
             default:
                 // Other chars are alphanum so add them to the buffer.
-                counter += 1;
                 title_buffer[counter] = *current_char;
                 break;
+        }
+
+        if(loopReset)
+        {
+            break;
+        }else
+        {
+            counter += 1;
         }
     }
 
