@@ -4,6 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define BUFFER_ROW_SIZE 100
+
 /**-----------------------------------------------------------------------------
  = STRUCTS/ENUMS
 -----------------------------------------------------------------------------**/
@@ -50,8 +52,8 @@ typedef struct Token
  */
 typedef struct TomlRow
 {
-    const char* key;
-    void* value;
+    char key[BUFFER_ROW_SIZE];
+    char value[BUFFER_ROW_SIZE];
 
 } TomlRow;
 
