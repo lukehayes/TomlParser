@@ -62,7 +62,7 @@ typedef struct TomlRow
  */
 typedef struct TomlTable
 {
-    const char* root;
+    char* root;
     TomlRow* fields;
 
 } TomlTable;
