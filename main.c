@@ -20,6 +20,18 @@ void PrintTomlRow(TomlRow* row)
 
 int main()
 {
+    /**
+     * ========================================================================
+     * Final API example:
+     * ------------------
+     *
+     * GetTable(table) -> Return a full table and all children.
+     *
+     * GetTableValue(key, table) -> Return the value for 'key' in a specific table.
+     *
+     * GetValue(key) -> Search a complete table for the first instance of 'key'
+     * ======================================================================== */
+
     BufferData* buffer = ReadFile("data.toml");
 
     char* title = ParseTableTitle(buffer);
