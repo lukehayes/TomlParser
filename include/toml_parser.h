@@ -93,11 +93,17 @@ BufferData* ReadFile(const char* toml_file);
 /**
  * Destroy all of the memory allocated for this buffer
  *
- * @param char* buffer    Contents of .toml file.
+ * @param BufferData* buffer    Contents of .toml file.
  *
  * @return void
  */
 void DestroyBufferData(BufferData* buffer);
 
+/**
+ * Parse an individual TOML table title.
+ *
+ * @param BufferData* buffer    Contents of .toml file.
+ */
+char* ParseTableTitle(BufferData* buffer);
 
 #endif // TOML_PARSER_H

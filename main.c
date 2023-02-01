@@ -21,22 +21,18 @@ void PrintTomlRow(TomlRow* row)
 int main()
 {
     BufferData* buffer = ReadFile("data.toml");
-    TomlRow* r1 = malloc(sizeof(TomlRow));
-    r1->key   = "name";
-    r1->value = malloc(sizeof(char) * 2);
 
+    char* title = ParseTableTitle(buffer);
+
+    PI(strlen(title));
+
+    for (int i = 0; i <= 6; i++)
+    {
+        PC(*(title+i));
+    }
+
+    free(title);
     DestroyBufferData(buffer);
-    strncpy(r1->value, "Bob", 10);
-    // r1->value = "Bob\0";
-
-    TomlRow r2 = {.key = "health" };
-    
-    PI(strlen(r1->value));
-
-    PrintTomlRow(r1);
-
-
-    FreeTomlRow(r1);
 
     return 0;
 }

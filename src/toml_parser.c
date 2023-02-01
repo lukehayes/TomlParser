@@ -13,6 +13,37 @@ int GetFileSize(FILE* fp)
     return file_length;
 }
 
+char* ParseTableTitle(BufferData* buffer)
+{
+    const int MAX = 10;
+    char* title_buffer = malloc(sizeof(char) * MAX);
+
+    for (int i = 0; i <= MAX; i++)
+    {
+        char* current_char = (buffer->data + i);
+
+        static int counter = 0;
+
+        switch (*current_char)
+        {
+            case '[':
+                // ] Start of title
+                break;
+            case ']':
+                // ] Char represents end of title
+                counter = 0;
+                break;
+            default:
+                // Other chars are alphanum so add them to the buffer.
+                counter += 1;
+                title_buffer[counter] = *current_char;
+                break;
+        }
+    }
+
+    return title_buffer;
+}
+
 BufferData* ReadFile(const char* toml_file)
 {
     FILE* fp = fopen(toml_file, "r+");
