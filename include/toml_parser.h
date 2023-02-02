@@ -59,7 +59,6 @@ typedef struct TomlTable
 } TomlTable;
 
 
-
 /**
  * Destroy all of the memory allocated for this buffer
  *
@@ -70,10 +69,21 @@ typedef struct TomlTable
 void DestroyBufferData(BufferData* buffer);
 
 /**
+ * Destroy all of the memory allocated for this table.
+ *
+ * @param TomlTable* table.
+ *
+ * @return void
+ */
+void DestroyTomlTable(TomlTable* table);
+
+/**
  * Parse an individual TOML table title.
  *
  * @param BufferData* buffer    Contents of .toml file.
+ *
+ * @return TomlTable table.
  */
-char* ParseTableTitle(BufferData* buffer);
+TomlTable* ParseTableTitle(BufferData* buffer);
 
 #endif // TOML_PARSER_H

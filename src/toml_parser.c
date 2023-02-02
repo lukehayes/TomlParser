@@ -48,3 +48,7 @@ char* ParseTableTitle(BufferData* buffer)
     return title_buffer;
 }
 
+void DestroyTomlTable(TomlTable* table)
+{
+    free(table);
+}
