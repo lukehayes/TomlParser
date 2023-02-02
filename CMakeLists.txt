@@ -8,6 +8,13 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(INCLUDE_DIRS "include")
 set(BIN_NAME "TomlParser")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(TOML_FILE "../data.toml")
+
+# Copy toml test file into build directory.
+#
+execute_process(
+  COMMAND cp ${TOML_FILE} .
+)
 
 # Find all source files.
 #
