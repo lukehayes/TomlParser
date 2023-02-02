@@ -31,6 +31,18 @@ void PrintString(const char* str)
     printf("STR: %s\n", str);
 }
 
+void FreeTomlRow(TomlRow* row)
+{
+    free(row->value);
+    free(row);
+}
+
+void PrintTomlRow(TomlRow* row)
+{
+    printf("Row: %s, Value: %s \n", row->key, (char*)row->value);
+    printf("--------\n");
+}
+
 // void PrintTomlTable(TomlTable* table)
 // {
 //     printf("\n----------------------------------------------\n");

@@ -6,17 +6,6 @@
 #include "toml_parser.h"
 #include "toml_print.h"
 
-void FreeTomlRow(TomlRow* row)
-{
-    free(row->value);
-    free(row);
-}
-
-void PrintTomlRow(TomlRow* row)
-{
-    printf("Row: %s, Value: %s \n", row->key, (char*)row->value);
-    printf("--------\n");
-}
 
 int main()
 {
