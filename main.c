@@ -3,9 +3,9 @@
 #include <string.h>
 #include <ctype.h>
 
+#include "toml_io.h"
 #include "toml_parser.h"
 #include "toml_print.h"
-
 
 int main()
 {
@@ -23,16 +23,10 @@ int main()
 
     BufferData* buffer = ReadFile("data.toml");
 
-    char* title = ParseTableTitle(buffer);
+    TomlTable* table = ParseTableTitle(buffer);
 
-    PI(strlen(title));
 
-    for (int i = 0; i <= 6; i++)
-    {
-        PC(*(title+i));
-    }
-
-    free(title);
+    DestroyTomlTable(table);
     DestroyBufferData(buffer);
 
     return 0;

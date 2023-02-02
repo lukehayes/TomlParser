@@ -5,8 +5,10 @@
 #include <stdbool.h>
 #include <ctype.h> // For isalpha() - Note to self.
 
-char* ParseTableTitle(BufferData* buffer)
+TomlTable* ParseTableTitle(BufferData* buffer)
 {
+    TomlTable* table = malloc(sizeof(TomlTable));
+
     const int MAX = 100;
     bool loopReset = false;
     char* title_buffer = malloc(sizeof(char) * MAX);
@@ -45,7 +47,9 @@ char* ParseTableTitle(BufferData* buffer)
         // key value pairs as we are inside a table.
     }
 
-    return title_buffer;
+    strncpy(table->root, title_buffer, strlen(title_buffer) + 1);
+
+    return table;
 }
 
 void DestroyTomlTable(TomlTable* table)
