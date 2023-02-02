@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "toml_io.h"
 
 #define BUFFER_ROW_SIZE 100
 
@@ -26,16 +27,6 @@ typedef enum TokenType {
     SPACE
 
 } TokenType;
-
-/**
- * Handy location to store data that has been read in.
- */
-typedef struct BufferData
-{
-    char* data;
-    size_t size;
-
-} BufferData;
 
 /**
  * Token represents a complete/valid token on TOML.
@@ -68,27 +59,6 @@ typedef struct TomlTable
 } TomlTable;
 
 
-/**-----------------------------------------------------------------------------
- = FUNCTIONS
------------------------------------------------------------------------------**/
-
-/**
- * Get the size of a file in bytes.
- *
- * @param FILE* fp
- *
- * @return int
- */
-int GetFileSize(FILE* fp);
-
-/**
- * Read the contents of a file and store it in memory.
- *
- * @param const char* toml_file    The name of the .toml file
- *
- * @return BufferData*
- */
-BufferData* ReadFile(const char* toml_file);
 
 /**
  * Destroy all of the memory allocated for this buffer

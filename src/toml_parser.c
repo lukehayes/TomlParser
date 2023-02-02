@@ -5,18 +5,9 @@
 #include <stdbool.h>
 #include <ctype.h> // For isalpha() - Note to self.
 
-int GetFileSize(FILE* fp)
-{
-    fseek(fp, 0, SEEK_END);
-    int file_length = ftell(fp);
-    fseek(fp, 0, SEEK_SET);
-
-    return file_length;
-}
-
 char* ParseTableTitle(BufferData* buffer)
 {
-    const int MAX = 10;
+    const int MAX = 100;
     bool loopReset = false;
     char* title_buffer = malloc(sizeof(char) * MAX);
 
@@ -49,35 +40,11 @@ char* ParseTableTitle(BufferData* buffer)
         {
             counter += 1;
         }
+
+        // Once this point has been reached, we can start to parse
+        // key value pairs as we are inside a table.
     }
 
     return title_buffer;
 }
 
-BufferData* ReadFile(const char* toml_file)
-{
-    FILE* fp = fopen(toml_file, "r+");
-
-    int file_length = GetFileSize(fp);
-    char* testBuffer[file_length+1];
-
-    if(ferror(fp))
-        printf("An error occurred opening file %s \n", toml_file);
-
-    BufferData* buffer = malloc(sizeof(BufferData));
-    buffer->data = malloc(sizeof(char) * file_length);
-    buffer->size = file_length;
-
-    fread(buffer->data, 1, file_length,fp);
-
-    fclose(fp);
-
-    return buffer;
-}
-
-void DestroyBufferData(BufferData* buffer)
-{
-    printf("Buffer of size: %li freed. \n", buffer->size);
-    free(buffer->data);
-    free(buffer);
-}
