@@ -33,7 +33,6 @@ void PrintString(const char* str)
 
 void FreeTomlRow(TomlRow* row)
 {
-    free(row->value);
     free(row);
 }
 
