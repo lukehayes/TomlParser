@@ -12,6 +12,7 @@ TomlTable* ParseTableTitle(BufferData* buffer)
     const int MAX = 100;
     bool loopReset = false;
     char* title_buffer = malloc(sizeof(char) * MAX);
+    char title_buffer[MAX];
 
     for (int i = 0; i <= MAX; i++)
     {
