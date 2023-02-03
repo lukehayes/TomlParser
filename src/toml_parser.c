@@ -1,6 +1,5 @@
 #include "toml_parser.h"
 #include "toml_print.h"
-#include <stdlib.h>
 #include <string.h>
 #include <stdbool.h>
 #include <ctype.h> // For isalpha() - Note to self.
@@ -11,7 +10,6 @@ TomlTable* ParseTableTitle(BufferData* buffer)
 
     const int MAX = 100;
     bool loopReset = false;
-    char* title_buffer = malloc(sizeof(char) * MAX);
     char title_buffer[MAX];
 
     for (int i = 0; i <= MAX; i++)
@@ -48,12 +46,14 @@ TomlTable* ParseTableTitle(BufferData* buffer)
         // key value pairs as we are inside a table.
     }
 
-    strncpy(table->root, title_buffer, strlen(title_buffer) + 1);
+    table->root = malloc(sizeof(char) * strlen(title_buffer));
+    strncpy(table->root, title_buffer, strlen(title_buffer) );
 
     return table;
 }
 
 void DestroyTomlTable(TomlTable* table)
 {
+    free(table->root);
     free(table);
 }
