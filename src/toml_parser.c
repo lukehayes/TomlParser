@@ -100,37 +100,25 @@ TomlTable* ParseToml(BufferData* buffer)
     char* buf = buffer->data;
     TomlTable* table = malloc(sizeof(TomlTable));
 
-    for(int i = 0; i<= buffer->size; i++) {
+    // TODO Implement this properly.
+    char* cpy = buf;
+    int counter = 0;
 
-        char current_char = *(buf + i);
-        char* name = malloc(sizeof(char));
+    if(*cpy == '[')
+    {
+        counter++;
+        cpy += counter;
 
-        if(current_char == '[')
+        while(*(cpy) != ']')
         {
-            // TODO Start parsing of table here
-            PS("Start Parse");
-        }
-        
-        PC(current_char);
-
-        if(current_char == ']')
-        {
-            PS("End Parse");
-            // TODO End parsing of table here.
+            PC(*cpy);
+            cpy = cpy + counter;
+            counter++;
         }
 
-        // if(isalpha(current_char))
-        // {
-        //     static int c = 1;
-        //     char nc = *(buf + i + c);
-        //
-        //     name = realloc(name, sizeof(char) * c);
-        //
-        //     printf("Char %c \n", current_char);
-        //
-        //     c++;
-        // }
     }
+
+    PS("Done");
 
     return table;
 }
