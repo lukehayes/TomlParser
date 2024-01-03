@@ -69,7 +69,6 @@ typedef struct TomlTable
  = FUNCTIONS
 -----------------------------------------------------------------------------**/
 
-
 /**
  * Run a basic lexical analysis of file.
  *
@@ -87,6 +86,13 @@ Token* TokenizeToml(BufferData* buffer);
  * @return TomlTable*
  */
 TomlTable* ParseToml(BufferData* buffer);
+
+/**
+ * Destroy a TomlTable struct
+ *
+ * @param TomlTable*
+ */
+void DestroyTomlTable(TomlTable* table);
 
 
 /**

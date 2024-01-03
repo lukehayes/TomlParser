@@ -6,91 +6,27 @@
 #include <ctype.h> // For isalpha() - Note to self.
 
 
-
 Token* TokenizeToml(BufferData* buffer)
 {
-    char* buf = buffer->data;
-    Token* t = malloc(sizeof(Token) * (buffer->size + 1));
+    // TODO Implement
+}
 
-    for(int i = 0; i<= buffer->size; i++) {
+TomlTable* ParseToml(BufferData* buffer)
+{
+    // TDOO Stop segfault for now implement properly later.
+    TomlTable* t = malloc(sizeof(TomlTable));
 
-        static int counter = 0;
-        char current_char = *(buf + i);
-        Token* tok = (t + i);
+    char* data = buffer->data;
+    int c = 0;
 
-        if(!isalnum(current_char))
-        {
-            // Reset the counter if current char is not alphanumeric.
-            counter = 0;
-
-            switch (current_char)
-            {
-                case '[':
-                    tok->type = LEFTBRACE;
-                    tok->value = current_char;
-                    break;
-                case ']':
-                    tok->type = RIGHTBRACE;
-                    tok->value = current_char;
-                    break;
-                case '=':
-                    tok->type = EQUALS;
-                    tok->value = current_char;
-                    break;
-                case ',':
-                    tok->type = COMMA;
-                    tok->value = current_char;
-                    break;
-                case '.':
-                    tok->type = DOT;
-                    tok->value = current_char;
-                    break;
-                case '"':
-                    tok->type = DQUOTE;
-                    tok->value = current_char;
-                    break;
-                case '\n':
-                case '\t':
-                case '\r':
-                default:
-                    break;
-            }
-        }else
-        {
-            if(current_char != ' ')
-            {
-                tok->type  = STRCHAR;
-                tok->value = current_char;
-            }
-        }
+    while(c < buffer->size)
+    {
+        printf("Count %i, Char %c \n", c, data[c]);
+        c += 1;
     }
 
     return t;
 }
-TomlTable* ParseToml(BufferData* buffer)
-{
-    char* buf = buffer->data;
-    TomlTable* table = malloc(sizeof(TomlTable));
-
-    // TODO Implement this properly.
-    char* cpy = buf;
-    int counter = 0;
-
-    if(*cpy == '[')
-    {
-        counter++;
-        cpy += counter;
-
-        while(*(cpy) != ']')
-        {
-            PC(*cpy);
-            cpy = cpy + counter;
-            counter++;
-        }
-
-    }
-
-    PS("Done");
 
 /**
  * Destroy a TomlTable struct
