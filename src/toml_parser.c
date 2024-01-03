@@ -92,7 +92,14 @@ TomlTable* ParseToml(BufferData* buffer)
 
     PS("Done");
 
-    return table;
+/**
+ * Destroy a TomlTable struct
+ *
+ * @param TomlTable*
+ */
+void DestroyTomlTable(TomlTable* table)
+{
+    free(table);
 }
 
 void DestroyBufferData(BufferData* buffer)

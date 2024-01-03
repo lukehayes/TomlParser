@@ -22,6 +22,7 @@ int main()
 
     free(t);
 
+    DestroyTomlTable(t);
     DestroyBufferData(buffer);
 
     return 0;
