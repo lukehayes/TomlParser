@@ -69,23 +69,6 @@ typedef struct TomlTable
  = FUNCTIONS
 -----------------------------------------------------------------------------**/
 
-/**
- * Get the size of a file in bytes.
- *
- * @param FILE* fp
- *
- * @return int
- */
-int GetFileSize(FILE* fp);
-
-/**
- * Read the contents of a file and store it in memory.
- *
- * @param const char* toml_file    The name of the .toml file
- *
- * @return BufferData*
- */
-BufferData* ReadFile(const char* toml_file);
 
 /**
  * Run a basic lexical analysis of file.
