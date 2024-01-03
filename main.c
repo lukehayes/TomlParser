@@ -3,6 +3,7 @@
 #include <string.h>
 #include <ctype.h>
 
+#include "io.h"
 #include "toml_parser.h"
 #include "toml_print.h"
 
@@ -12,16 +13,9 @@ int main()
 
     TomlTable* t = ParseToml(buffer);
 
-    char c = 65;
-
-    PC(c);
-
     PrintBuffer(buffer);
 
     PrintTomlTable(t);
-
-    free(t);
-
     DestroyTomlTable(t);
     DestroyBufferData(buffer);
 
