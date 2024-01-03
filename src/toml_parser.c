@@ -6,7 +6,7 @@
 #include <ctype.h> // For isalpha() - Note to self.
 
 
-Token* TokenizeToml(BufferData* buffer)
+TomlToken* TokenizeToml(BufferData* buffer)
 {
     // TODO Implement
 }
@@ -15,15 +15,6 @@ TomlTable* ParseToml(BufferData* buffer)
 {
     // TDOO Stop segfault for now implement properly later.
     TomlTable* t = malloc(sizeof(TomlTable));
-
-    char* data = buffer->data;
-    int c = 0;
-
-    while(c < buffer->size)
-    {
-        printf("Count %i, Char %c \n", c, data[c]);
-        c += 1;
-    }
 
     return t;
 }

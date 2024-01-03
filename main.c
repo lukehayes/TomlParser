@@ -11,13 +11,13 @@ int main()
 {
     BufferData* buffer = ReadFile("data.toml");
 
-    TomlTable* t = ParseToml(buffer);
+    TomlToken* t = TokenizeToml(buffer);
 
     PrintBuffer(buffer);
 
-    PrintTomlTable(t);
-    DestroyTomlTable(t);
     DestroyBufferData(buffer);
+
+    PS("Parsing Done.");
 
     return 0;
 }

@@ -21,9 +21,21 @@ typedef enum TokenType {
     DQUOTE,
     DOT,
     COMMA,
-    SPACE
+    SPACE,
 
 } TokenType;
+
+/**
+ * An individual token parsed from a .toml file.
+ */
+typedef struct TomlToken {
+
+    TokenType type;
+    char      value;
+    int       start_position;
+    int       end_position;
+
+} TomlToken;
 
 /**
  * Handy location to store data that has been read in.
@@ -35,17 +47,6 @@ typedef struct BufferData
 
 } BufferData;
 
-
-/**
- * An individual token parsed from a .toml file.
- */
-typedef struct Token {
-
-    char  value;
-    TokenType type;
-    size_t length;
-
-} Token;
 
 
 /**
@@ -76,7 +77,7 @@ typedef struct TomlTable
  *
  * @return TokenType*
  */
-Token* TokenizeToml(BufferData* buffer);
+TomlToken* TokenizeToml(BufferData* buffer);
 
 /**
  * Parse toml and retrieve meaningful data.
