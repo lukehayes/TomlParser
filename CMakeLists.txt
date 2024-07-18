@@ -1,30 +1,51 @@
 cmake_minimum_required(VERSION 3.2)
 project(TomlParser)
 
-# Variables.
-#
-set(CMAKE_C_STANDARD 17)
+# -----------------------------------------------------------------------------
+# Set Variables
+# 
+set(CMAKE_C_STANDARD 23)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(INCLUDE_DIRS "include")
-set(BIN_NAME "TomlParser")
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(BIN_NAME "TOMLP")
+set(SRC_DIR "${PROJECT_SOURCE_DIR}/src")
+set(CMAKE_C_FLAGS  "-Wall -fno-strict-aliasing")
+ 
 
-# Find all source files.
-#
-file(GLOB SRC_FILES "${CMAKE_SOURCE_DIR}/src/*.c")
+# -----------------------------------------------------------------------------
+# Add debug option
+# 
+option(DEV_DEBUG "Enter debug mode" 0)
+if (DEV_DEBUG)
+  add_definitions(-DDEV_DEBUG)
+endif()
 
+
+# -----------------------------------------------------------------------------
 # Set the project include directories.
-#
+# 
 include_directories(${INCLUDE_DIRS})
 
-# Add source files.
-#
-add_subdirectory(src)
 
-# Create the final binary.
-#
-add_executable(${BIN_NAME} main.c ${SRC_FILES})
+# -----------------------------------------------------------------------------
+# Create the final binary
+# 
+add_executable(${BIN_NAME} main.c)
 
-# Link in any libraies the binary needs.
-#
-#target_link_libraries(${BIN_NAME} raylib m)
+
+# -----------------------------------------------------------------------------
+# Build the Toml Parser Library
+# 
+set(TOML_PARSER_LIB "TomlParser")
+
+add_library(${TOML_PARSER_LIB} STATIC
+  "${SRC_DIR}/toml_parser.c"
+  "${SRC_DIR}/toml_print.c"
+)
+
+
+# -----------------------------------------------------------------------------
+# Link the libraries
+# 
+target_link_libraries(${BIN_NAME} ${TOML_PARSER_LIB})
+
