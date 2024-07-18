@@ -5,10 +5,19 @@
 #include <string.h>
 #include <ctype.h> // For isalpha() - Note to self.
 
-
 TomlToken* TokenizeToml(BufferData* buffer)
 {
     // TODO Implement
+    const char* data = buffer->data;
+
+    printf("Data? -> %c <- \n", *data);
+    printf("strchr? -> %i <- \n", strchr(*data, '['));
+
+    // Check for the opening square bracket.
+    if(*data != '[')
+    {
+        printf("TOML file doesn't start with a square bracket! Exiting.\n");
+    }
 }
 
 TomlTable* ParseToml(BufferData* buffer)
