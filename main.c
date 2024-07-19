@@ -1,8 +1,3 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <ctype.h>
-
 #include "io.h"
 #include "toml_parser.h"
 #include "toml_print.h"
