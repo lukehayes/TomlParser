@@ -22,16 +22,11 @@ TomlToken* TokenizeToml(BufferData* buffer)
         data += 1;
     }
 
-
-
 }
 
 TomlTable* ParseToml(BufferData* buffer)
 {
-    // TDOO Stop segfault for now implement properly later.
-    TomlTable* t = malloc(sizeof(TomlTable));
-
-    return t;
+    // TODO
 }
 
 /**
