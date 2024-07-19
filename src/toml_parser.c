@@ -44,3 +44,13 @@ void DestroyBufferData(BufferData* buffer)
     free(buffer->data);
     free(buffer);
 }
+int _CheckStartFormat(const char* data)
+{
+    if(*data != '[')
+    {
+        printf("TOML file doesn't start with a square bracket! Exiting.\n");
+        return 0;
+    }
+
+    return 1;
+}

@@ -95,7 +95,6 @@ TomlTable* ParseToml(BufferData* buffer);
  */
 void DestroyTomlTable(TomlTable* table);
 
-
 /**
  * Destroy all of the memory allocated for this buffer
  *
@@ -104,6 +103,15 @@ void DestroyTomlTable(TomlTable* table);
  * @return void
  */
 void DestroyBufferData(BufferData* buffer);
+
+/**
+ * Check that the file starts with an opening square bracket.
+ *
+ * @param const char* data  A pointer to the TOML data.
+ *
+ * @return void
+ */
+int _CheckStartFormat(const char* data);
 
 
 
