@@ -1,23 +1,46 @@
 #include "toml_parser.h"
-#include "toml_print.h"
+// #include "toml_print.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+// #include <string.h>
 #include <ctype.h> // For isalpha() - Note to self.
 
 TomlToken* TokenizeToml(BufferData* buffer)
 {
-    // TODO Implement
     const char* data = buffer->data;
+    int bufSize = 100;
 
-    printf("Data? -> %c <- \n", *data);
-    printf("strchr? -> %i <- \n", strchr(*data, '['));
+    const char keyArr[bufSize];
+    const char valArr[bufSize];
 
-    // Check for the opening square bracket.
-    if(*data != '[')
+    while(*data != '\n')
     {
-        printf("TOML file doesn't start with a square bracket! Exiting.\n");
+        const char* key;
+        const char* val;
+
+
+        if(isalpha(*data))
+        {
+            printf("Alpha: %c \n", *data);
+
+            while(*data != isspace(*data))
+            {
+                data += 1;
+                printf("Non Space: %c \n", *data);
+            }
+
+
+            printf("DONE \n");
+        }
+
+
+
+        printf("Data %c\n", *data);
+        data += 1;
     }
+
+
+
 }
 
 TomlTable* ParseToml(BufferData* buffer)
@@ -44,6 +67,7 @@ void DestroyBufferData(BufferData* buffer)
     free(buffer->data);
     free(buffer);
 }
+
 int _CheckStartFormat(const char* data)
 {
     if(*data != '[')
