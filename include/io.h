@@ -48,5 +48,13 @@ BufferData* ReadFile(const char* toml_file)
     return buffer;
 }
 
+void DestroyBufferData(BufferData* buffer)
+{
+    printf("Buffer of size: %li freed. \n", buffer->size);
+    free(buffer->data);
+    free(buffer);
+}
+
+
 #endif // TOML_IO_H
 

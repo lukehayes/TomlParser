@@ -39,13 +39,6 @@ void DestroyTomlTable(TomlTable* table)
     free(table);
 }
 
-void DestroyBufferData(BufferData* buffer)
-{
-    printf("Buffer of size: %li freed. \n", buffer->size);
-    free(buffer->data);
-    free(buffer);
-}
-
 int _CheckStartFormat(const char* data)
 {
     if(*data != '[')
