@@ -5,41 +5,87 @@
 #include <ctype.h>
 #include <string.h>
 
+typedef struct KeyValPair
+{
+    char key[100];
+    char value[100];
+
+} KeyValPair;
+
+typedef struct KeyValList
+{
+    KeyValPair pairs[10];
+    size_t size;
+}KeyValList;
+
+void resetMemory(char* mem, size_t size)
+{
+    for(int i = 0; i <= size - 1; i++)
+    {
+        mem[i] = 0;
+    }
+}
+
 int main()
 {
     BufferData* buffer = ReadFile("data.toml");
 
     int charCount = 0;
     int seperatorCount = 0;
+    int beforeEquals = true;
 
 
-    while(charCount != buffer->size)
+    KeyValList list;
+    list.size = 0;
+
+    // TODO This is working but needs a huge refactor!
+
+    while(charCount <= buffer->size)
     {
-        char* currentChar = buffer->data;
+        char* currentChar = buffer->data + charCount;
 
-        if(*currentChar == '[')
+        KeyValPair p;
+        p.key[99] = '\0';
+        p.value[99] = '\0';
+
+        if(*currentChar == '=')
         {
-            // TODO Implement this properly.
-            strtok(buffer->data, "[]");
+            beforeEquals = false;
         }
 
-        if(*currentChar == ']')
+
+        if(beforeEquals)
         {
-            printf("Close Square Bracket \n");
+            if(*currentChar != '=')
+            {
+                strncat(p.key, currentChar, 1);
+            }
+
+        } else 
+        {
+            if(*currentChar != '=')
+            {
+                strncat(p.value, currentChar, 1);
+            }
         }
 
-        if(isalnum(*currentChar))
+        if(*currentChar == '\n')
         {
-            printf("Churrent %c ...\n", *currentChar);
-        }
-        charCount += 1;
-        buffer->data++;
 
+            list.pairs[list.size] = p;
+            list.size += 1;
+            beforeEquals = true;
+            resetMemory(p.key, 100);
+            resetMemory(p.value, 100);
+        }
+        charCount++;
     }
 
-
-
-
+    for(int i = 0; i <= list.size -1; i++)
+    {
+        KeyValPair p = list.pairs[i];
+        printf("%s = %s", p.key, p.value);
+    }
 
     DestroyBufferData(buffer);
     PS("Parsing Done.");
